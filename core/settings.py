@@ -10,10 +10,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = config('FOREVER_SECRET_KEY')
+SECRET_KEY = 'django-insecure-$p!m&$-your-secure-random-key-here'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = config('FOREVER_DEBUGG')
+DEBUG = True  # Set to False in production
+
 
 ALLOWED_HOSTS = [ '127.0.0.1' ,'localhost', 'your-forever-store.herokuapp.com']
 
@@ -90,14 +91,11 @@ AUTH_USER_MODEL = 'accounts.Account'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'forever',
-        'USER' : 'Omarreda',
-        'PASSWORD' : config('FOREVER_PASSWORD'),
-        'HOST' : 'forever-identifier.cmesgttozqee.us-west-2.rds.amazonaws.com',
-        'PORT' : '5432',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',  # Database file path
     }
 }
+
 
 
 
@@ -162,19 +160,23 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
 
+# Password reset timeout in days (set to 1 day)
 PASSWORD_RESET_TIMEOUT_DAYS = 1
 
-EMAIL_HOST= config('FOREVER_EMAIL_HOSTT')
+# Email configuration
+EMAIL_HOST = 'smtp.gmail.com'  # Example: Gmail's SMTP server
 EMAIL_USE_TLS = True
-EMAIL_PORT= 587
-EMAIL_HOST_USER = config('FOREVER_EMAIL_HOST_USERR')
-EMAIL_HOST_PASSWORD = config('FOREVER_EMAIL_HOST_PASSWORDD')
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'your-email@example.com'  # Replace with your email address
+EMAIL_HOST_PASSWORD = 'your-email-password'  # Replace with your email password
 
+# AWS S3 configuration
 AWS_QUERYSTRING_AUTH = False
 DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
-AWS_ACCESS_KEY_ID = config('FOREVER_AWS_ACCESS_KEY_ID')
-AWS_SECRET_ACCESS_KEY = config('FOREVER_AWS_SECRET_ACCESS_KEY')
-AWS_STORAGE_BUCKET_NAME = 'forever-bucket'
+AWS_ACCESS_KEY_ID = 'your-aws-access-key-id'  # Replace with your AWS Access Key
+AWS_SECRET_ACCESS_KEY = 'your-aws-secret-access-key'  # Replace with your AWS Secret Key
+AWS_STORAGE_BUCKET_NAME = 'forever-bucket'  # Replace with your S3 bucket name
+
 
 
 if os.getcwd() == '/app' :
