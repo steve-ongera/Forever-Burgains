@@ -1,7 +1,7 @@
 
 # Forever Ecommerce 🛒
 
-![Forever Ecommerce Banner](https://github.com/omarreda22/Forever/blob/main/static/Forever.PNG)
+![Forever Ecommerce Banner](https://github.com/steve-ongera/Forever/blob/main/static/Forever.PNG)
 
 ## 🌟 Project Overview
 
